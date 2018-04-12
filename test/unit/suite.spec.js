@@ -463,11 +463,11 @@ describe('Suite', function () {
     it('should throw an error if the title isn\'t a string', function () {
       expect(function () {
         new Suite(undefined, 'root');
-      }, 'to throw', Error);
+      }, 'to throw');
 
       expect(function () {
         new Suite(function () {}, 'root');
-      }, 'to throw', Error);
+      }, 'to throw');
     });
 
     it('should not throw if the title is a string', function () {
@@ -483,11 +483,11 @@ describe('Test', function () {
     it('should throw an error if the title isn\'t a string', function () {
       expect(function () {
         new Test(function () {});
-      }, 'to throw', Error);
+      }, 'to throw');
 
       expect(function () {
         new Test(undefined, function () {});
-      }, 'to throw', Error);
+      }, 'to throw');
     });
 
     it('should not throw if the title is a string', function () {
