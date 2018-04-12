@@ -496,6 +496,7 @@
     "rimraf": "^2.5.2",
     "svgo": "^0.7.2",
     "through2": "^2.0.1",
+    "unexpected": "^10.37.4",
     "watchify": "^3.7.0"
   },
   "files": [

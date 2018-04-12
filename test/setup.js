@@ -1,4 +1,6 @@
 'use strict';
 
-global.expect = require('expect.js');
+const unexpected = require('unexpected');
+global.expect = unexpected.clone();
+
 global.assert = require('assert');
