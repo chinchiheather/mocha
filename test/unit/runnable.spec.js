@@ -492,7 +492,7 @@ describe('Runnable(title, fn)', function () {
       });
       // runner sets the state
       test.run(function () {
-        expect(test.isFailed()).not.to.be.ok();
+        expect(test.isFailed(), 'not to be ok');
       });
     });
 
@@ -502,7 +502,7 @@ describe('Runnable(title, fn)', function () {
       // runner sets the state
       test.state = 'failed';
       test.run(function () {
-        expect(test.isFailed()).to.be.ok();
+        expect(test.isFailed(), 'not to be ok');
       });
     });
 
@@ -514,7 +514,7 @@ describe('Runnable(title, fn)', function () {
         return true;
       };
       test.run(function () {
-        expect(test.isFailed()).not.to.be.ok();
+        expect(test.isFailed(), 'not to be ok');
       });
     });
   });
