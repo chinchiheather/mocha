@@ -25,43 +25,43 @@ describe('Suite', function () {
     });
 
     it('should copy the title', function () {
-      expect(this.suite.clone().title).to.equal('To be cloned');
+      expect(this.suite.clone().title, 'to be', 'To be cloned');
     });
 
     it('should copy the timeout value', function () {
-      expect(this.suite.clone().timeout()).to.equal(3043);
+      expect(this.suite.clone().timeout(), 'to be', 3043);
     });
 
     it('should copy the slow value', function () {
-      expect(this.suite.clone().slow()).to.equal(101);
+      expect(this.suite.clone().slow(), 'to be', 101);
     });
 
     it('should copy the bail value', function () {
-      expect(this.suite.clone().bail()).to.be(true);
+      expect(this.suite.clone().bail(), 'to be', true);
     });
 
     it('should not copy the values from the suites array', function () {
-      expect(this.suite.clone().suites).to.be.empty();
+      expect(this.suite.clone().suites, 'to be empty');
     });
 
     it('should not copy the values from the tests array', function () {
-      expect(this.suite.clone().tests).to.be.empty();
+      expect(this.suite.clone().tests, 'to be empty');
     });
 
     it('should not copy the values from the _beforeEach array', function () {
-      expect(this.suite.clone()._beforeEach).to.be.empty();
+      expect(this.suite.clone()._beforeEach, 'to be empty');
     });
 
     it('should not copy the values from the _beforeAll array', function () {
-      expect(this.suite.clone()._beforeAll).to.be.empty();
+      expect(this.suite.clone()._beforeAll, 'to be empty');
     });
 
     it('should not copy the values from the _afterEach array', function () {
-      expect(this.suite.clone()._afterEach).to.be.empty();
+      expect(this.suite.clone()._afterEach, 'to be empty');
     });
 
     it('should not copy the values from the _afterAll array', function () {
-      expect(this.suite.clone()._afterAll).to.be.empty();
+      expect(this.suite.clone()._afterAll, 'to be empty');
     });
   });
 
@@ -72,14 +72,14 @@ describe('Suite', function () {
 
     describe('when no argument is passed', function () {
       it('should return the timeout value', function () {
-        expect(this.suite.timeout()).to.equal(2000);
+        expect(this.suite.timeout(), 'to be', 2000);
       });
     });
 
     describe('when argument is passed', function () {
       it('should return the Suite object', function () {
         var newSuite = this.suite.timeout(5000);
-        expect(newSuite.timeout()).to.equal(5000);
+        expect(newSuite.timeout(), 'to be', 5000);
       });
     });
   });
@@ -92,20 +92,20 @@ describe('Suite', function () {
     describe('when given a string', function () {
       it('should parse it', function () {
         this.suite.slow('5 seconds');
-        expect(this.suite.slow()).to.equal(5000);
+        expect(this.suite.slow(), 'to be', 5000);
       });
     });
 
     describe('when no argument is passed', function () {
       it('should return the slow value', function () {
-        expect(this.suite.slow()).to.equal(75);
+        expect(this.suite.slow(), 'to be', 75);
       });
     });
 
     describe('when argument is passed', function () {
       it('should return the Suite object', function () {
         var newSuite = this.suite.slow(5000);
-        expect(newSuite.slow()).to.equal(5000);
+        expect(newSuite.slow(), 'to be', 5000);
       });
     });
   });
@@ -118,14 +118,14 @@ describe('Suite', function () {
 
     describe('when no argument is passed', function () {
       it('should return the bail value', function () {
-        expect(this.suite.bail()).to.be(true);
+        expect(this.suite.bail(), 'to be', true);
       });
     });
 
     describe('when argument is passed', function () {
       it('should return the Suite object', function () {
         var newSuite = this.suite.bail(false);
-        expect(newSuite.bail()).to.be(false);
+        expect(newSuite.bail(), 'to be', false);
       });
     });
   });
@@ -140,10 +140,10 @@ describe('Suite', function () {
         var fn = function () {};
         this.suite.beforeAll(fn);
 
-        expect(this.suite._beforeAll).to.have.length(1);
+        expect(this.suite._beforeAll, 'to have length', 1);
         var beforeAllItem = this.suite._beforeAll[0];
-        expect(beforeAllItem.title).to.match(/^"before all" hook/);
-        expect(beforeAllItem.fn).to.equal(fn);
+        expect(beforeAllItem.title, 'to match', /^"before all" hook/);
+        expect(beforeAllItem.fn, 'to be', fn);
       });
 
       it('appends title to hook', function () {
@@ -151,17 +151,10 @@ describe('Suite', function () {
         };
         this.suite.beforeAll('test', fn);
 
-        expect(this.suite._beforeAll)
-          .to
-          .have
-          .length(1);
+        expect(this.suite._beforeAll, 'to have length', 1);
         var beforeAllItem = this.suite._beforeAll[0];
-        expect(beforeAllItem.title)
-          .to
-          .equal('"before all" hook: test');
-        expect(beforeAllItem.fn)
-          .to
-          .equal(fn);
+        expect(beforeAllItem.title, 'to be', '"before all" hook: test');
+        expect(beforeAllItem.fn, 'to be', fn);
       });
 
       it('uses function name if available', function () {
@@ -172,8 +165,8 @@ describe('Suite', function () {
         function namedFn () {}
         this.suite.beforeAll(namedFn);
         var beforeAllItem = this.suite._beforeAll[0];
-        expect(beforeAllItem.title).to.equal('"before all" hook: namedFn');
-        expect(beforeAllItem.fn).to.equal(namedFn);
+        expect(beforeAllItem.title, 'to be', '"before all" hook: namedFn');
+        expect(beforeAllItem.fn, 'to be', namedFn);
       });
     });
   });
@@ -188,27 +181,20 @@ describe('Suite', function () {
         var fn = function () {};
         this.suite.afterAll(fn);
 
-        expect(this.suite._afterAll).to.have.length(1);
+        expect(this.suite._afterAll, 'to have length', 1);
         var afterAllItem = this.suite._afterAll[0];
-        expect(afterAllItem.title).to.match(/^"after all" hook/);
-        expect(afterAllItem.fn).to.equal(fn);
+        expect(afterAllItem.title, 'to match', /^"after all" hook/);
+        expect(afterAllItem.fn, 'to be', fn);
       });
       it('appends title to hook', function () {
         var fn = function () {
         };
         this.suite.afterAll('test', fn);
 
-        expect(this.suite._afterAll)
-          .to
-          .have
-          .length(1);
+        expect(this.suite._afterAll, 'to have length', 1);
         var beforeAllItem = this.suite._afterAll[0];
-        expect(beforeAllItem.title)
-          .to
-          .equal('"after all" hook: test');
-        expect(beforeAllItem.fn)
-          .to
-          .equal(fn);
+        expect(beforeAllItem.title, 'to be', '"after all" hook: test');
+        expect(beforeAllItem.fn, 'to be', fn);
       });
 
       it('uses function name if available', function () {
@@ -219,8 +205,8 @@ describe('Suite', function () {
         function namedFn () {}
         this.suite.afterAll(namedFn);
         var afterAllItem = this.suite._afterAll[0];
-        expect(afterAllItem.title).to.equal('"after all" hook: namedFn');
-        expect(afterAllItem.fn).to.equal(namedFn);
+        expect(afterAllItem.title, 'to be', '"after all" hook: namedFn');
+        expect(afterAllItem.fn, 'to be', namedFn);
       });
     });
   });
@@ -235,10 +221,10 @@ describe('Suite', function () {
         var fn = function () {};
         this.suite.beforeEach(fn);
 
-        expect(this.suite._beforeEach).to.have.length(1);
+        expect(this.suite._beforeEach, 'to have length', 1);
         var beforeEachItem = this.suite._beforeEach[0];
-        expect(beforeEachItem.title).to.match(/^"before each" hook/);
-        expect(beforeEachItem.fn).to.equal(fn);
+        expect(beforeEachItem.title, 'to match', /^"before each" hook/);
+        expect(beforeEachItem.fn, 'to be', fn);
       });
 
       it('appends title to hook', function () {
@@ -246,17 +232,10 @@ describe('Suite', function () {
         };
         this.suite.beforeEach('test', fn);
 
-        expect(this.suite._beforeEach)
-          .to
-          .have
-          .length(1);
+        expect(this.suite._beforeEach, 'to have length', 1);
         var beforeAllItem = this.suite._beforeEach[0];
-        expect(beforeAllItem.title)
-          .to
-          .equal('"before each" hook: test');
-        expect(beforeAllItem.fn)
-          .to
-          .equal(fn);
+        expect(beforeAllItem.title, 'to be', '"before each" hook: test');
+        expect(beforeAllItem.fn, 'to be', fn);
       });
 
       it('uses function name if available', function () {
@@ -267,8 +246,8 @@ describe('Suite', function () {
         function namedFn () {}
         this.suite.beforeEach(namedFn);
         var beforeEachItem = this.suite._beforeEach[0];
-        expect(beforeEachItem.title).to.equal('"before each" hook: namedFn');
-        expect(beforeEachItem.fn).to.equal(namedFn);
+        expect(beforeEachItem.title, 'to be', '"before each" hook: namedFn');
+        expect(beforeEachItem.fn, 'to be', namedFn);
       });
     });
   });
@@ -283,10 +262,10 @@ describe('Suite', function () {
         var fn = function () {};
         this.suite.afterEach(fn);
 
-        expect(this.suite._afterEach).to.have.length(1);
+        expect(this.suite._afterEach, 'to have length', 1);
         var afterEachItem = this.suite._afterEach[0];
-        expect(afterEachItem.title).to.match(/^"after each" hook/);
-        expect(afterEachItem.fn).to.equal(fn);
+        expect(afterEachItem.title, 'to match', /^"after each" hook/);
+        expect(afterEachItem.fn, 'to be', fn);
       });
 
       it('appends title to hook', function () {
@@ -294,17 +273,10 @@ describe('Suite', function () {
         };
         this.suite.afterEach('test', fn);
 
-        expect(this.suite._afterEach)
-          .to
-          .have
-          .length(1);
+        expect(this.suite._afterEach, 'to have length', 1);
         var beforeAllItem = this.suite._afterEach[0];
-        expect(beforeAllItem.title)
-          .to
-          .equal('"after each" hook: test');
-        expect(beforeAllItem.fn)
-          .to
-          .equal(fn);
+        expect(beforeAllItem.title, 'to be', '"after each" hook: test');
+        expect(beforeAllItem.fn, 'to be', fn);
       });
 
       it('uses function name if available', function () {
@@ -315,8 +287,8 @@ describe('Suite', function () {
         function namedFn () {}
         this.suite.afterEach(namedFn);
         var afterEachItem = this.suite._afterEach[0];
-        expect(afterEachItem.title).to.equal('"after each" hook: namedFn');
-        expect(afterEachItem.fn).to.equal(namedFn);
+        expect(afterEachItem.title, 'to be', '"after each" hook: namedFn');
+        expect(afterEachItem.fn, 'to be', namedFn);
       });
     });
   });
@@ -331,25 +303,25 @@ describe('Suite', function () {
     });
 
     it('sets the parent on the added Suite', function () {
-      expect(this.second.parent).to.equal(this.first);
+      expect(this.second.parent, 'to be', this.first);
     });
 
     it('copies the timeout value', function () {
-      expect(this.second.timeout()).to.equal(4002);
+      expect(this.second.timeout(), 'to be', 4002);
     });
 
     it('copies the slow value', function () {
-      expect(this.second.slow()).to.equal(200);
+      expect(this.second.slow(), 'to be', 200);
     });
 
     it('adds the suite to the suites collection', function () {
-      expect(this.first.suites).to.have.length(1);
-      expect(this.first.suites[0]).to.equal(this.second);
+      expect(this.first.suites, 'to have length', 1);
+      expect(this.first.suites[0], 'to be', this.second);
     });
 
     it('treats suite as pending if its parent is pending', function () {
       this.first.pending = true;
-      expect(this.second.isPending()).to.be(true);
+      expect(this.second.isPending(), 'to be', true);
     });
   });
 
@@ -362,16 +334,16 @@ describe('Suite', function () {
   //   });
   //
   //   it('sets the parent on the added test', function(){
-  //     expect(this.test.parent).to.equal(this.suite);
+  //     expect(this.test.parent, 'to be', this.suite);
   //   });
   //
   //   it('copies the timeout value', function(){
-  //     expect(this.test.timeout()).to.equal(4002);
+  //     expect(this.test.timeout(), 'to be', 4002);
   //   });
   //
   //   it('adds the test to the tests collection', function(){
-  //     expect(this.suite.tests).to.have.length(1);
-  //     expect(this.suite.tests[0]).to.equal(this.test);
+  //     expect(this.suite.tests, 'to have length', 1);
+  //     expect(this.suite.tests[0], 'to be', this.test);
   //   });
   // });
 
@@ -382,7 +354,7 @@ describe('Suite', function () {
 
     describe('when there is no parent', function () {
       it('returns the suite title', function () {
-        expect(this.suite.fullTitle()).to.equal('A Suite');
+        expect(this.suite.fullTitle(), 'to be', 'A Suite');
       });
     });
 
@@ -390,7 +362,7 @@ describe('Suite', function () {
       it('returns the combination of parent\'s and suite\'s title', function () {
         var parentSuite = new Suite('I am a parent');
         parentSuite.addSuite(this.suite);
-        expect(this.suite.fullTitle()).to.equal('I am a parent A Suite');
+        expect(this.suite.fullTitle(), 'to be', 'I am a parent A Suite');
       });
     });
   });
@@ -402,7 +374,7 @@ describe('Suite', function () {
 
     describe('when there is no parent', function () {
       it('returns the suite title', function () {
-        expect(this.suite.titlePath()).to.eql(['A Suite']);
+        expect(this.suite.titlePath(), 'to equal', ['A Suite']);
       });
     });
 
@@ -411,7 +383,7 @@ describe('Suite', function () {
         it('returns the suite title', function () {
           var parentSuite = new Suite('');
           parentSuite.addSuite(this.suite);
-          expect(this.suite.titlePath()).to.eql(['A Suite']);
+          expect(this.suite.titlePath(), 'to equal', ['A Suite']);
         });
       });
 
@@ -419,7 +391,7 @@ describe('Suite', function () {
         it('returns the concatenation of parent\'s and suite\'s title', function () {
           var parentSuite = new Suite('I am a parent');
           parentSuite.addSuite(this.suite);
-          expect(this.suite.titlePath()).to.eql(['I am a parent', 'A Suite']);
+          expect(this.suite.titlePath(), 'to equal', ['I am a parent', 'A Suite']);
         });
       });
     });
@@ -432,7 +404,7 @@ describe('Suite', function () {
 
     describe('when there are no nested suites or tests', function () {
       it('should return 0', function () {
-        expect(this.suite.total()).to.equal(0);
+        expect(this.suite.total(), 'to be', 0);
       });
     });
 
@@ -440,7 +412,7 @@ describe('Suite', function () {
       it('should return the number', function () {
         this.suite.addTest(new Test('a child test'));
         this.suite.addTest(new Test('another child test'));
-        expect(this.suite.total()).to.equal(2);
+        expect(this.suite.total(), 'to be', 2);
       });
     });
   });
@@ -455,7 +427,7 @@ describe('Suite', function () {
         var n = 0;
         function fn () { n++; }
         this.suite.eachTest(fn);
-        expect(n).to.equal(0);
+        expect(n, 'to be', 0);
       });
     });
 
@@ -467,7 +439,7 @@ describe('Suite', function () {
         var n = 0;
         function fn () { n++; }
         this.suite.eachTest(fn);
-        expect(n).to.equal(2);
+        expect(n, 'to be', 2);
       });
     });
 
@@ -481,7 +453,7 @@ describe('Suite', function () {
         var n = 0;
         function fn () { n++; }
         this.suite.eachTest(fn);
-        expect(n).to.equal(2);
+        expect(n, 'to be', 2);
       });
     });
   });
@@ -491,17 +463,17 @@ describe('Suite', function () {
     it('should throw an error if the title isn\'t a string', function () {
       expect(function () {
         new Suite(undefined, 'root');
-      }).to.throwError();
+      }, 'to throw', Error);
 
       expect(function () {
         new Suite(function () {}, 'root');
-      }).to.throwError();
+      }, 'to throw', Error);
     });
 
     it('should not throw if the title is a string', function () {
       expect(function () {
         new Suite('Bdd suite', 'root');
-      }).to.not.throwError();
+      }, 'not to throw');
     });
   });
 });
@@ -511,17 +483,17 @@ describe('Test', function () {
     it('should throw an error if the title isn\'t a string', function () {
       expect(function () {
         new Test(function () {});
-      }).to.throwError();
+      }, 'to throw', Error);
 
       expect(function () {
         new Test(undefined, function () {});
-      }).to.throwError();
+      }, 'to throw', Error);
     });
 
     it('should not throw if the title is a string', function () {
       expect(function () {
         new Test('test-case', function () {});
-      }).to.not.throwError();
+      }, 'not to throw');
     });
   });
 });
